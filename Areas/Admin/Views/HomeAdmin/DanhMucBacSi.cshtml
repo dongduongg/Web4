@@ -1,0 +1,73 @@
+﻿@*@model IEnumerable<QLBN.Models.Doctor>;*@
+@using X.PagedList.Mvc.Core;
+
+@using QLBN.Models;
+@model X.PagedList.IPagedList<Doctor>
+@{
+    ViewData["Title"] = "DanhMucBacSi";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<h2>Danh mục bác sĩ</h2>
+<p>
+    <a asp-action="ThemBacSiMoi">Create</a>
+</p>
+<p>@TempData["Message"]</p>
+<table class="table">
+    <thead>
+        <tr class="table-warning">
+            <th>
+                Doctor ID
+            </th>
+            <th>
+                Doctor Name
+            </th>
+            <th>
+                Doctor Degree
+            </th>
+            <th>
+                Adjust
+            </th>
+            
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr >
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorDegree)
+                </td>
+                <td>
+                     <a asp-action="SuaBacSi" asp-route-doctorId="@item.DoctorId">Edit</a> |
+                     <a asp-action="Details" asp-route-doctorId="@item.DoctorId">Details</a> |
+                     <a asp-action="XoaBacSi" asp-route-doctorId="@item.DoctorId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@*@Html.PagedListPager(Model,page => Url.Action("DanhMucBacSi", new {page=page}), new
+    X.PagedList.Web.Common.PagedListRenderOptions()
+{
+        LiElementClasses = new List<String> {"page-item"},
+        PageClasses = new List<String> {"page-link"}
+})*@
+<div class="product__pagination">
+    @Html.PagedListPager(
+    Model,
+    page => Url.Action("DanhMucBacSi", new { page }),
+    new PagedListRenderOptions
+    {
+    LiElementClasses = new List<string> { "page-item" },
+    PageClasses = new List<string> { "page-link" }
+    }
+    )
+</div>

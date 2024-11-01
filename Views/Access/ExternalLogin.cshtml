@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Đăng nhập bằng Google";
+}
+
+<h2 class="text-center">Đăng nhập bằng tài khoản Google</h2>
+
+<div class="mt-4 text-center">
+    <p>Vui lòng chọn tài khoản Google của bạn để đăng nhập:</p>
+
+    <a href="@Url.Action("ExternalLogin", "Access", new { provider = "Google", returnUrl = "/" })"
+       class="btn btn-danger btn-lg">
+        <i class="fab fa-google me-2"></i> Đăng nhập với Google
+    </a>
+</div>
+
+<hr class="mt-5" />
+
+<div class="text-center mt-3">
+    <a href="@Url.Action("Login", "Access")">Quay lại đăng nhập thông thường</a>
+</div>

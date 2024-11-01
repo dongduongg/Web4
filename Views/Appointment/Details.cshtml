@@ -1,0 +1,139 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@*using QLBN.ViewModels;*@
+@model QLBN.ViewModels.DetailAppointmentViewModel;
+
+@{
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Form | pbc-webdev</title>
+    <link rel="stylesheet" href="../Appointment/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container2" id="booking-container">
+        <h1>Detail Appointment What You Picked</h1>
+        <form id="appointment-form">
+            @*<div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            *@
+            <div class="row g-3">
+                <div class="col-12 col-sm-6">
+                    <label asp-for="PatientName">Tên Bệnh Nhân</label>
+                    <input asp-for="PatientName" type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
+                    <span asp-validation-for="PatientName"></span>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label asp-for="PatientGender">CCCD</label>
+                    <input asp-for="PatientId" type="text" class="form-control border-0" placeholder="Your Identified Card Number" style="height: 55px;">
+                    <span asp-validation-for="PatientId"></span>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label asp-for="PatientPhone">Số Điện Thoại</label>
+                    <input asp-for="PatientPhone" type="text" class="form-control border-0" placeholder="Your Phone Number" style="height: 55px;">
+                    <span asp-validation-for="PatientPhone"></span>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label asp-for="PatientEmail">Email</label>
+                    <input asp-for="PatientEmail" type="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
+                    <span asp-validation-for="PatientEmail"></span>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label asp-for="PatientGender">Giới Tính</label>
+                    <input asp-for="PatientGender" type="text" class="form-control border-0" placeholder="Your Gender( Male or Female )" style="height: 55px;">
+                    <span asp-validation-for="PatientGender"></span>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label asp-for="PatientAddress">Địa chỉ</label>
+                    <input asp-for="PatientAddress" type="text" class="form-control border-0" placeholder="Your Address" style="height: 55px;">
+                    <span asp-validation-for="PatientAddress"></span>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <div class="birth" id="birth" data-target-input="nearest">
+                        <label asp-for="PatientBorn">Ngày Sinh</label>
+                        <input type="text" asp-for="PatientBorn"
+                               class="form-control border-0 datetimepicker-input"
+                               placeholder="Select Your Date Of Birth" data-target="#birth" data-toggle="datetimepicker" style="height: 55px;">
+                        <span asp-validation-for="PatientBorn" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <div class="date" id="date" data-target-input="nearest">
+                        <label asp-for="AppointmentDate">Lịch Hẹn</label>
+                        <input type="text" asp-for="AppointmentDate"
+                               class="form-control border-0 datetimepicker-input"
+                               placeholder="Choose Appointment Date" data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
+                        <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label asp-for="FacultyName">Khoa</label>
+                    <input asp-for="FacultyName" type="text" class="form-control border-0"  style="height: 55px;">
+                    <span asp-validation-for="FacultyName" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label asp-for="ServiceName">Dịch vụ</label>
+                    <input asp-for="ServiceName" type="text" class="form-control border-0" style="height: 55px;">
+                    <span asp-validation-for="ServiceName" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label asp-for="DoctorName">Tên Bác Sĩ</label>
+                    <input asp-for="DoctorName" type="text" class="form-control border-0" style="height: 55px;">
+                    <span asp-validation-for="DoctorName" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label asp-for="ServiceFee">Phí Khám</label>
+                    <input asp-for="ServiceFee" type="text" class="form-control border-0" style="height: 55px;">
+                    <span asp-validation-for="ServiceFee" class="text-danger"></span>
+                </div>
+                
+                <div class="col-12 col-sm-6">
+                    <label asp-for="RoomBuilding">Tòa Nhà</label>
+                    <input asp-for="RoomBuilding" type="text" class="form-control border-0" style="height: 55px;">
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label asp-for="RoomFloor">Tầng</label>
+                    <input asp-for="RoomFloor" type="text" class="form-control border-0" style="height: 55px;">
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label asp-for="RoomNumber">Phòng</label>
+                    <input asp-for="RoomNumber" type="text" class="form-control border-0" style="height: 55px;">
+                </div>
+                <div class="col-12">
+                    <label asp-for="AppointmentDescription">Mô tả </label>
+                    <textarea asp-for="AppointmentDescription" class="form-control border-0" rows="2" placeholder="Describe your problem"></textarea>
+                    <span asp-validation-for="AppointmentDescription" class="text-danger"></span>
+                </div>
+               @* <div class="col-12 col-sm-6">
+                    <button class="btn btn-primary w-100 py-3" type="submit">Book Appointment</button>
+                    
+                </div>
+                <div class="col-12 col-sm-6">
+                    
+                    <button class="btn btn-primary w-100 py-3" asp-action="Index">Go To List Appointment</button>
+                </div>*@
+            </div>
+            <button asp-action="Index" asp-controller="Appointment"type="submit">Go Back</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    
+
+    <script src="script.js"></script>
+</body>
+</html>

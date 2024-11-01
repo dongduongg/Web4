@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Xác thực số điện thoại";
+}
+
+<h2 class="text-center">Xác thực số điện thoại</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form asp-action="EmailConfirmation" method="post" class="mt-4">
+    <div class="form-group">
+        <label for="otp">Nhập mã OTP</label>
+        <input type="text" name="OTP"  class="form-control" />
+    </div>
+
+    @*<input type="hidden" name="userId" value="@TempData["UserId"]" />*@
+
+    <button type="submit" class="btn btn-success mt-3">Xác thực</button>
+</form>

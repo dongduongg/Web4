@@ -1,0 +1,64 @@
+﻿
+@{
+    Layout = "~/Views/Shared/LayoutDoctor.cshtml";
+}
+@model IEnumerable<QLBN.Models.Appointment>;
+@*@model IEnumerable<Appointment>*@
+<div class="ms-2 mx-2">
+    <h1>Appointment List</h1>
+    <form >
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mã lịch hẹn</th>
+                    @*<th>Họ và Tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Giới Tính</th>
+                    <th>Số Phone</th>
+                    <th>Email</th>
+                    <th>Địa chỉ</th>*@
+                    <th>Mã Bệnh Nhân</th>
+                    <th>Ngày giờ</th>
+                    <th>Dịch vụ</th>
+                    <th>Bác sĩ</th>
+                    <th>Trạng thái</th>
+                    <th>Chức năng</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelitem=>item.AppointmentId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelitem=>item.PatientId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelitem=>item.AppointmentDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelitem=>item.ServiceId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelitem=>item.DoctorId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelitem=>item.AppointmentStatus)
+                        </td>
+                        
+                       
+                        <td>
+                            <a asp-action="Edit" asp-route-appointmentid="@item.AppointmentId">Edit</a>|
+                            <a asp-action="Details" asp-route-appointmentid="@item.AppointmentId">Details</a> |
+                            <a asp-action="Delete" asp-route-appointmentid="@item.AppointmentId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a asp-action="Create" asp-controller="Appointment" class="btn btn-primary">Create New Appointment</a>
+    </form>
+</div>

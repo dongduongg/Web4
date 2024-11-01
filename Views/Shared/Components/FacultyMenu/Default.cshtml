@@ -1,0 +1,72 @@
+﻿
+@model IEnumerable<Faculty>
+
+<div id="tabs">
+    <ul>
+        @foreach(var item in Model)
+        {
+            var getUrl = "https://localhost:7163/api/doctorapi/" + item.FacultyId;
+            <li><a style="cursor:pointer" onclick="showDoctorByFaculty('@getUrl')"><span>@item.FacultyName</span></a></li>
+
+
+
+
+                // asp-route-maKhoa maKhoa la tham so string trong Doctor theo Khoa
+           
+            
+            
+            @*<li><a asp-controller="Pages" asp-action="DoctortheoKhoa" asp-route-maKhoa="@item.FacultyId"><span>@item.FacultyName</span></a></li>*@
+            // asp-route-maKhoa maKhoa la tham so string trong Doctor theo Khoa
+        }      
+        
+    </ul>
+</div>
+
+
+<script>
+    function showDoctorByFaculty(getUrl) {
+        var str = '';
+        $.ajax({
+            type: 'GET',
+            url: getUrl,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data); // Kiểm tra dữ liệu trả về
+
+                $.each(data, function (key, val) {
+                    str += '<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">';
+                    str += '    <div class="team-item position-relative rounded overflow-hidden">';
+                    str += '        <div class="overflow-hidden">';
+                    str += '            <img class="img-fluid" src="' + val.imagePath + '" alt="Doctor Image">';
+                    str += '        </div>';
+                    str += '        <div class="team-text bg-light text-center p-4">';
+
+                    // Tạo URL cho chi tiết bác sĩ
+                    var doctorDetailUrl = '/Pages/DoctorDetail?maDoctor=' + val.doctorId;
+
+                    str += '            <h5>';
+                    str += '                <a href="' + doctorDetailUrl + '">'; // Sử dụng href thay vì asp-controller
+                    str += '                    ' + val.doctorDegree + ' - ' + val.doctorName;
+                    str += '                </a>';
+                    str += '            </h5>';
+                    str += '            <div class="team-social text-center">';
+                    str += '                <a class="btn btn-square" href="#"><i class="fab fa-facebook-f"></i></a>';
+                    str += '                <a class="btn btn-square" href="#"><i class="fab fa-twitter"></i></a>';
+                    str += '                <a class="btn btn-square" href="#"><i class="fab fa-instagram"></i></a>';
+                    str += '            </div>';
+                    str += '        </div>';
+                    str += '    </div>';
+                    str += '</div>';
+                });
+
+                $('#displayDoctors').html(str);
+            },
+            error: function (xhr) {
+                alert('Error: ' + xhr.responseText);
+            }
+        });
+    }
+</script>
+
+
+ 

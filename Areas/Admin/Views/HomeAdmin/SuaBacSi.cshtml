@@ -1,0 +1,56 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model QLBN.Models.Doctor
+
+@{
+    ViewData["Title"] = "ThemBacSiMoi";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>SuaBacSi</h1>
+<h4>Doctor </h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="SuaBacSi">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DoctorId" />
+            <div class="form-group">
+                <label asp-for="DoctorId" class="control-label"></label>
+                <input asp-for="DoctorId" class="form-control" />
+                <span asp-validation-for="DoctorId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DoctorName" class="control-label"></label>
+                <input asp-for="DoctorName" class="form-control" />
+                <span asp-validation-for="DoctorName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DoctorDegree" class="control-label"></label>
+                <input asp-for="DoctorDegree" class="form-control" />
+                <span asp-validation-for="DoctorDegree" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FacultyId" class="control-label"></label>
+                <select asp-for="FacultyId" class="form-control" asp-items="ViewBag.FacultyId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RoomId" class="control-label"></label>
+                <select asp-for="RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ServiceId" class="control-label"></label>
+                <select asp-for="ServiceId" class="form-control" asp-items="ViewBag.ServiceId"></select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button> 
+            <a asp-action="DanhMucBacSi" method="post" class="btn btn-secondary">Back to List</a>
+        </form>
+    </div>
+</div>
+
+

@@ -1,0 +1,76 @@
+﻿@*@model IEnumerable<YourNamespace.Appointment>;*@
+@using X.PagedList.Mvc.Core;
+@using QLBN.Models;
+@model X.PagedList.IPagedList<Appointment>
+@{
+    ViewData["Title"] = "DanhMucLichHen";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<h2>Danh Mục Lịch Hẹn</h2>
+<p>
+    <a asp-action="ThemLichHenMoi">Create</a>
+</p>
+<p>@TempData["Message"]</p>
+<table class="table">
+    <thead>
+        <tr class="table-warning">
+            <th>Appointment ID</th>
+            <th>AppointmentDate</th>
+            <th>Patient ID</th>
+            <th>Doctor ID</th>
+            <th>Service ID</th>
+            <th>AppointmentStatus</th>
+            <th>
+                Adjust
+            </th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => appointment.AppointmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => appointment.AppointmentDate)
+                
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => appointment.PatientId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => appointment.DoctorId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => appointment.ServiceId)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => appointment.AppointmentStatus)
+                </td>
+                <td>
+                    <a asp-action="SuaLichHen" asp-route-appointmentId="@appointment.AppointmentId">Edit</a>|
+                    <a asp-action="ChiTietLichHen" asp-route-appointmentId="@appointment.AppointmentId">Details</a>|
+                    <a asp-action="XoaLichHen" asp-route-appointmentId="@appointment.AppointmentId">Delete</a>
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="product__pagination">
+    @Html.PagedListPager(
+    Model,
+    page => Url.Action("DanhMucLichHen", new { page }),
+    new PagedListRenderOptions
+    {
+    LiElementClasses = new List<string> { "page-item" },
+    PageClasses = new List<string> { "page-link" }
+    }
+    )
+</div>

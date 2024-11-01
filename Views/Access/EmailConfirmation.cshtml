@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "Xác nhận Email";
+}
+
+<!-- Import Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #f0f2f5;
+        font-family: 'Poppins', sans-serif; /* Áp dụng font chữ Poppins */
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .container {
+        max-width: 480px;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h1 {
+        color: #333;
+        font-weight: 600; /* Đậm hơn cho tiêu đề */
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #6c757d;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #4e9fd1;
+            box-shadow: 0 0 8px rgba(78, 159, 209, 0.2);
+        }
+
+    .btn-custom {
+        background: linear-gradient(90deg, #4e9fd1, #3a7c9d);
+        border: none;
+        color: white;
+        padding: 12px;
+        width: 100%;
+        font-size: 18px;
+        font-weight: 500;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.1s ease;
+    }
+
+        .btn-custom:hover {
+            background: linear-gradient(90deg, #3a7c9d, #2b5a7f);
+            transform: scale(1.02);
+        }
+
+    .text-muted a {
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        .text-muted a:hover {
+            color: #4e9fd1;
+        }
+
+    .mt-4 {
+        margin-top: 1.5rem !important;
+    }
+</style>
+
+<div class="container">
+    <h1>Xác nhận OTP</h1>
+    <p>Vui lòng kiểm tra email của bạn để xác nhận tài khoản.</p>
+
+    <form asp-action="EmailConfirmation" method="post" class="mt-4">
+        <div class="form-group">
+            <label for="otp">Nhập mã OTP</label>
+            <input type="text" id="otp" name="OTP" class="form-control" placeholder="Nhập mã OTP của bạn" required />
+        </div>
+
+        <button type="submit" class="btn btn-custom">Xác thực</button>
+    </form>
+
+    <div class="mt-4">
+        <p class="text-muted">
+            Chưa nhận được mã? <a href="#">Gửi lại mã</a>
+        </p>
+    </div>
+</div>
